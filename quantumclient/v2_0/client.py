@@ -1,4 +1,5 @@
 # Copyright 2012 OpenStack LLC.
+# Copyright 2013 National Institute of Informatics.
 # All Rights Reserved
 #
 #    Licensed under the Apache License, Version 2.0 (the "License"); you may
@@ -186,6 +187,8 @@ class Client(object):
     DHCP_AGENTS = '/dhcp-agents'
     L3_ROUTERS = '/l3-routers'
     L3_AGENTS = '/l3-agents'
+    dodai_outer_ports_path = "/dodai-outer-ports"
+    dodai_outer_port_path = "/dodai-outer-ports/%s"
     # API has no way to report plurals, so we have to hard code them
     EXTED_PLURALS = {'routers': 'router',
                      'floatingips': 'floatingip',
@@ -883,6 +886,34 @@ class Client(object):
         """
         return self.delete((self.agent_path + self.L3_ROUTERS + "/%s") % (
             l3_agent, router_id))
+
+    @APIParamsCall
+    def list_dodai_outer_ports(self):
+        """
+        Fetches a list of all Dodai OuterPorts
+        """
+        return self.list('dodai_outer_ports', self.dodai_outer_ports_path)
+
+    @APIParamsCall
+    def show_dodai_outer_port(self, id, **_params):
+        """
+        Fetches information of a certain Dodai OuterPort
+        """
+        return self.get(self.dodai_outer_port_path % (id), params=_params)
+
+    @APIParamsCall
+    def create_dodai_outer_port(self, body=None):
+        """
+        Creates a new Dodai OuterPort
+        """
+        return self.post(self.dodai_outer_ports_path, body=body)
+
+    @APIParamsCall
+    def delete_dodai_outer_port(self, id):
+        """
+        Deletes the specified Dodai OuterPort
+        """
+        return self.delete(self.dodai_outer_port_path % (id))
 
     def __init__(self, **kwargs):
         """Initialize a new client for the Quantum v2.0 API."""

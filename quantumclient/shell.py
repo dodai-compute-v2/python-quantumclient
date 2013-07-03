@@ -1,4 +1,5 @@
 # Copyright 2012 OpenStack LLC.
+# Copyright 2013 National Institute of Informatics.
 # All Rights Reserved
 #
 #    Licensed under the Apache License, Version 2.0 (the "License"); you may
@@ -257,6 +258,14 @@ COMMAND_V2 = {
         'quantumclient.quantum.v2_0.agentscheduler.ListRoutersOnL3Agent'),
     'l3-agent-list-hosting-router': utils.import_class(
         'quantumclient.quantum.v2_0.agentscheduler.ListL3AgentsHostingRouter'),
+    'outer-port-list': utils.import_class(
+        'quantumclient.quantum.v2_0.dodai_outer_port.ListDodaiOuterPort'),
+    'outer-port-show': utils.import_class(
+        'quantumclient.quantum.v2_0.dodai_outer_port.ShowDodaiOuterPort'),
+    'outer-port-create': utils.import_class(
+        'quantumclient.quantum.v2_0.dodai_outer_port.CreateDodaiOuterPort'),
+    'outer-port-delete': utils.import_class(
+        'quantumclient.quantum.v2_0.dodai_outer_port.DeleteDodaiOuterPort'),
 }
 
 COMMANDS = {'2.0': COMMAND_V2}
